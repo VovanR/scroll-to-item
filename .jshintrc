@@ -1,0 +1,30 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "freeze": true,
+  "latedef": true,
+  "newcap": true,
+  "nonbsp": true,
+  "nonew": true,
+  "plusplus": false,
+  "quotmark": "single",
+  "undef": true,
+  "browser": true,
+  "globals": {
+    "jQuery": true,
+    "$": true,
+    "define": true,
+    "console": true,
+    "alert": true,
+    "confirm": true,
+    "prompt": true,
+    "require": true,
+    "requirejs": true,
+    "mocha": true,
+    "mochaPhantomJS": true,
+    "describe": true,
+    "it": true,
+    "beforeEach": true,
+    "afterEach": true
+  }
+}
