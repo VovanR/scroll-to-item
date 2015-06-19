@@ -13,7 +13,7 @@ var scrollToItem = new ScrollToItem({
 });
 ```
 
-![](preview/example.png)
+![](preview/example.gif)
 ```javascript
 scrollToItem.scrollToItem('0');
 scrollToItem.scrollToItem('1');
