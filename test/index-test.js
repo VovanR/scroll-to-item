@@ -71,7 +71,7 @@ requirejs([
         });
 
         afterEach(function () {
-            // setScrollerTop(0);
+            setScrollerTop(0);
         });
 
         describe('constructor', function () {
@@ -84,12 +84,6 @@ requirejs([
                 var m = module();
                 assert.ok(m._itemClassName);
             });
-        });
-
-        describe('_init', function () {
-        });
-
-        describe('_bindControls', function () {
         });
 
         describe('#scrollToItem', function () {
