@@ -71,15 +71,18 @@
             </button>
         </script>
 
-        <script src="../node_modules/requirejs/require.js"></script>
-        <script src="../node_modules/jquery/dist/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.18/require.min.js"></script>
         <script>
-        requirejs.config.baseUrl = './';
-        requirejs(['../common'], function (common) {
-            requirejs(['./js/app'], function (App) {
-                var app = new App();
+            require.config({
+                paths: {
+                    jquery: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min',
+                    lodash: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min',
+                    ScrollToItem: 'https://raw.githubusercontent.com/VovanR/scroll-to-item/master/index',
+                    app: './js/app',
+                },
             });
-        });
+
+            require(['app']);
         </script>
     </body>
 </html>

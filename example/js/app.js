@@ -5,7 +5,7 @@
 define([
     'jquery',
     'lodash',
-    '../../index',
+    'ScrollToItem',
 ], function (
     $,
     _,
@@ -91,6 +91,6 @@ define([
         },
     };
 
-    return App;
+    return new App();
 
 });
