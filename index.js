@@ -39,7 +39,7 @@ define([
 
             var $item = $(this._itemClassName, $scroll).filter('[data-pk=\'' + pk + '\']');
             var itemScrollTop = $item.position().top;
-            var itemHeight = $item.height();
+            var itemHeight = $item.outerHeight();
 
             if (itemScrollTop < 0) {
                 // item starts before viewport start

@@ -178,6 +178,13 @@ requirejs([
                     });
                 });
             });
+
+            it('should understand items paddings', function () {
+                var m = module({}, 10);
+                $('#fixtures .js-list__item[data-pk=\'5\']').css('padding', '50px');
+                m.scrollToItem('5');
+                assert.equal(getScrollerTop(), 50);
+            });
         });
 
         describe('#destroy', function () {
