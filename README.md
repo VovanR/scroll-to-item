@@ -4,7 +4,7 @@
 [![Dependency Status][depstat-image]][depstat-url]
 [![DevDependency Status][depstat-dev-image]][depstat-dev-url]
 
-> Scrolls list on buttons hover ([Demo](https://jsfiddle.net/VovanR/269cxg3c/))
+> Scroll list to item ([Demo](https://jsfiddle.net/VovanR/269cxg3c/))
 
 ## Usage
 
