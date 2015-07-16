@@ -38,12 +38,30 @@
         margin-bottom: 10px;
     }
 
+
     .anchors {
         text-align: center;
     }
 
     .anchors__item:focus {
         box-shadow: 0 0 0 3px lime;
+    }
+
+
+    .list__scroll_x {
+        width: 100px;
+        height: auto;
+    }
+
+    .list__scroll_x .list {
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .list__scroll_x .list__item {
+        display: inline-block;
+        width: 30px;
+        vertical-align: middle;
     }
 </style>
     </head>
@@ -52,18 +70,21 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <p>
+            <button id="direction-toggler" type="button">Toggle Direction</button>
+        </p>
+
         <div class="list__scroll js-list__scroll">
-            <ul class="list js-list">
-            </ul>
+            <ul class="list js-list"></ul>
         </div>
 
         <div class="anchors js-anchors"></div>
 
-        <script type="text/template" id="list__item-template">
-            <li class="list__item js-list__item" data-pk="<%= pk %>" style="height: <%= height %>px;">
+        <script type="text/template" id="list__item-template"><!--
+            --><li class="list__item js-list__item" data-pk="<%= pk %>" style="width: <%= size %>px; height: <%= size %>px;">
                 <%= pk %>
-            </li>
-        </script>
+            </li><!--
+        --></script>
 
         <script type="text/template" id="anchors__item-template">
             <button class="anchors__item js-anchors__item" data-pk="<%= pk %>" type="button">
@@ -77,7 +98,7 @@
                 paths: {
                     jquery: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min',
                     lodash: 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.9.3/lodash.min',
-                    ScrollToItem: 'https://raw.githubusercontent.com/VovanR/scroll-to-item/master/index',
+                    'scroll-to-item': '../index',
                     app: './js/app',
                 },
             });

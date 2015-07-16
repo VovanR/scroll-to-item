@@ -50,15 +50,15 @@ requirejs([
         /**
          * @return {Number}
          */
-        var getScrollerTop = function () {
-            return $('#fixtures .js-list__scroll')[0].scrollTop;
+        var getScrollerLeft = function () {
+            return $('#fixtures .js-list__scroll')[0].scrollLeft;
         };
 
         /**
-         * @param {Number} scrollTop
+         * @param {Number} scrollLeft
          */
-        var setScrollerTop = function (scrollTop) {
-            $('#fixtures .js-list__scroll')[0].scrollTop = scrollTop;
+        var setScrollerLeft = function (scrollLeft) {
+            $('#fixtures .js-list__scroll')[0].scrollLeft = scrollLeft;
         };
 
         var _bFixtureTemplate = $('#fixture-template');
@@ -67,23 +67,14 @@ requirejs([
 
         beforeEach(function () {
             $('#fixtures').html(_fixtureTemplate);
-            assert.equal(getScrollerTop(), 0);
+            assert.equal(getScrollerLeft(), 0);
         });
 
         afterEach(function () {
-            setScrollerTop(0);
+            setScrollerLeft(0);
         });
 
         describe('constructor', function () {
-            it('should have `$scroll` option', function () {
-                var m = module();
-                assert.ok(m._$scroll.length);
-            });
-
-            it('should have `itemClassName` option', function () {
-                var m = module();
-                assert.ok(m._itemClassName);
-            });
         });
 
         describe('#scrollToItem', function () {
@@ -97,22 +88,14 @@ requirejs([
             });
         });
 
-        describe('_scrollToItemY', function () {
-            it('should fire `_scrollToItemY` with `$item` param', function () {
-                var m = module({}, 10);
-                sinon.stub(m, '_scrollToItemY');
-                m.scrollToItem('2');
-                assert.isTrue(m._scrollToItemY.calledOnce);
-                assert.equal(m._scrollToItemY.getCall(0).args[0].data('pk'), '2');
-                m._scrollToItemY.restore();
-            });
+        describe('_scrollToItemX', function () {
             describe('item starts before viewport start', function () {
-                it('should scroll if item is on top', function () {
+                it('should scroll if item is on left', function () {
                     var m = module({}, 10);
-                    setScrollerTop(30);
-                    assert.equal(getScrollerTop(), 30);
+                    setScrollerLeft(30);
+                    assert.equal(getScrollerLeft(), 30);
                     m.scrollToItem('2');
-                    assert.equal(getScrollerTop(), 20);
+                    assert.equal(getScrollerLeft(), 20);
                 });
             });
 
@@ -120,7 +103,7 @@ requirejs([
                 it('should not scroll if item start equals viewport start', function () {
                     var m = module({}, 10);
                     m.scrollToItem('0');
-                    assert.equal(getScrollerTop(), 0);
+                    assert.equal(getScrollerLeft(), 0);
                 });
             });
 
@@ -128,66 +111,66 @@ requirejs([
                 describe('item starts in viewport', function () {
                     it('should not scroll if item starts and ends in viewport', function () {
                         var m = module({}, 10);
-                        setScrollerTop(20);
+                        setScrollerLeft(20);
                         m.scrollToItem('3');
-                        assert.equal(getScrollerTop(), 20);
+                        assert.equal(getScrollerLeft(), 20);
                     });
 
                     it('should scroll if item starts in viewport and ends after viewport end', function () {
                         var m = module({}, 10);
-                        $('#fixtures .js-list__item[data-pk=\'4\']').height(20);
-                        setScrollerTop(20);
+                        $('#fixtures .js-list__item[data-pk=\'4\']').width(20);
+                        setScrollerLeft(20);
                         m.scrollToItem('4');
-                        assert.equal(getScrollerTop(), 30);
+                        assert.equal(getScrollerLeft(), 30);
                     });
 
-                    it('should scroll if item top in viewport and item height > scroll height', function () {
+                    it('should scroll if item left in viewport and item width > scroll width', function () {
                         var m = module({}, 10);
-                        setScrollerTop(30);
-                        $('#fixtures .js-list__item[data-pk=\'4\']').height(50);
+                        setScrollerLeft(30);
+                        $('#fixtures .js-list__item[data-pk=\'4\']').width(50);
                         m.scrollToItem('4');
-                        assert.equal(getScrollerTop(), 40);
+                        assert.equal(getScrollerLeft(), 40);
                     });
                 });
 
                 describe('item starts on or after viewport end', function () {
-                    it('should scroll if item is on bottom', function () {
+                    it('should scroll if item is on right', function () {
                         var m = module({}, 10);
-                        $('#fixtures .js-list__item[data-pk=\'5\']').height(20);
+                        $('#fixtures .js-list__item[data-pk=\'5\']').width(20);
                         m.scrollToItem('5');
-                        assert.equal(getScrollerTop(), 40);
+                        assert.equal(getScrollerLeft(), 40);
                     });
 
-                    it('should scroll if item top === scroller height', function () {
+                    it('should scroll if item left === scroller width', function () {
                         var m = module({}, 10);
                         m.scrollToItem('3');
-                        assert.equal(getScrollerTop(), 10);
+                        assert.equal(getScrollerLeft(), 10);
                     });
 
-                    it('should scroll to item top if item height > scroll height', function () {
+                    it('should scroll to item left if item width > scroll width', function () {
                         var m = module({}, 10);
-                        $('#fixtures .js-list__item[data-pk=\'5\']').height(50);
+                        $('#fixtures .js-list__item[data-pk=\'5\']').width(50);
                         m.scrollToItem('5');
-                        assert.equal(getScrollerTop(), 50);
+                        assert.equal(getScrollerLeft(), 50);
                     });
 
                     it('should be good', function () {
                         var m = module({}, 10);
-                        $('#fixtures .js-list__item[data-pk=\'4\']').height(50);
-                        $('#fixtures .js-list__item[data-pk=\'5\']').height(50);
+                        $('#fixtures .js-list__item[data-pk=\'4\']').width(50);
+                        $('#fixtures .js-list__item[data-pk=\'5\']').width(50);
                         m.scrollToItem('4');
-                        assert.equal(getScrollerTop(), 40);
+                        assert.equal(getScrollerLeft(), 40);
                         m.scrollToItem('5');
-                        assert.equal(getScrollerTop(), 90);
+                        assert.equal(getScrollerLeft(), 90);
                     });
 
                     it('should understand current scrolled', function () {
                         var m = module({}, 10);
-                        setScrollerTop(0);
+                        setScrollerLeft(0);
                         m.scrollToItem('7');
-                        assert.equal(getScrollerTop(), 50);
+                        assert.equal(getScrollerLeft(), 50);
                         m.scrollToItem('8');
-                        assert.equal(getScrollerTop(), 60);
+                        assert.equal(getScrollerLeft(), 60);
                     });
                 });
             });
@@ -196,16 +179,7 @@ requirejs([
                 var m = module({}, 10);
                 $('#fixtures .js-list__item[data-pk=\'5\']').css('padding', '50px');
                 m.scrollToItem('5');
-                assert.equal(getScrollerTop(), 50);
-            });
-        });
-
-        describe('#destroy', function () {
-            it('should remove link from scroller block', function () {
-                var m = module();
-                assert.ok(m._$scroll.length);
-                m.destroy();
-                assert.isNull(m._$scroll);
+                assert.equal(getScrollerLeft(), 50);
             });
         });
     });

@@ -5,7 +5,7 @@
 define([
     'jquery',
     'lodash',
-    'ScrollToItem',
+    'scroll-to-item',
 ], function (
     $,
     _,
@@ -46,7 +46,7 @@ define([
             _.times(count, function (i) {
                 items.push(listItemTemplate({
                     pk: i,
-                    height: _.random(20, 110, false),
+                    size: _.random(20, 110, false),
                 }));
             });
             items = items.join('');
@@ -79,6 +79,10 @@ define([
                 var $this = $(this);
                 var pk = $this.data('pk')
                 _this._selectItem(pk);
+            });
+
+            $('#direction-toggler').on('click', function () {
+                $('.js-list__scroll').toggleClass('list__scroll_x');
             });
         },
 
