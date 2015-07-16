@@ -10,7 +10,7 @@
   "scripts": {
     "prepush": "npm test; npm run lint",
     "precommit": "npm test; npm run lint",
-    "test": "mocha-phantomjs -R spec ./test/index-test.html",
+    "test": "find ./test -name *-test.html -exec mocha-phantomjs -R spec {} \\;",
     "lint": "npm run jslint; npm run jscs",
     "jslint": "jshint --reporter ./node_modules/jshint-stylish ./index.js ./test/*.js",
     "jscs": "jscs ./index.js ./test/*.js"
